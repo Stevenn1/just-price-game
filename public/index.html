@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Juste Nombre</title>
+    <link rel="stylesheet" href="JeuxTuChauffes.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Honk&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Indie+Flower&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="container">
+        <div id="compteurEssais">Essais restants : 10</div>
+        <div class="card">
+            <div class="noUnderline">
+                <img id="animateur" src="img/animateur2.gif" alt="">
+            </div>
+            
+            <h1>LE JUSTE NOMBRE</h1>
+
+            <div class="layout">
+                <label>Entre un chiffre entre 1 et 70 :</label>
+                <input type="number" id="chiffre" min="1" max="70" autofocus>
+                <button class="btn" onclick="verifierNombre()">GO</button>
+            </div>
+        </div>
+        <div id="resultat"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="script.js"></script> 
+
+    <script>
+        // Générer un nombre aléatoire entre 1 et 70
+        let randomNumber = Math.floor(Math.random() * 70) + 1;
+        let essaisRestants = 11;  // L'utilisateur commence avec 11 essais
+
+        // Fonction de vérification du nombre
+        function verifierNombre() {
+            const chiffreInput = document.getElementById("chiffre");
+            const chiffre = parseInt(chiffreInput.value);
+            const resultatDiv = document.getElementById("resultat");
+            const compteurEssaisDiv = document.getElementById("compteurEssais");
+            let message = "";
+
+            if (isNaN(chiffre) || chiffre < 1 || chiffre > 70) {
+                message = "Le chiffre doit être compris entre 1 et 70. Réessaie. 😁";
+            } else {
+                const ecart = Math.abs(randomNumber - chiffre);
+
+                if (ecart === 0) {
+                    message = `VICTOIRE !!! 🎉🎉😁 TU AS GAGNÉÉÉÉÉ !!!! Le nombre était ${randomNumber}. Tu as trouvé en ${10 - essaisRestants + 1} tentatives.`;
+                    essaisRestants = 10;  // Réinitialiser le compteur d'essais
+                    randomNumber = Math.floor(Math.random() * 70) + 1;  // Générer un nouveau nombre
+                } else if (ecart <= 5) {
+                    message = `Tu chauffes 😄 ! Il y a un écart de ${ecart} !!!`;
+                } else if (ecart <= 15) {
+                    message = "Ça se réchauffe 😉 !!!";
+                } else if (ecart <= 35) {
+                    message = "Tu refroidis 😰 !!!";
+                } else {
+                    message = "Tu refroidis encore plus 🥶 !!!";
+                }
+
+                essaisRestants--;  // Décrémente le nombre d'essais
+
+                if (essaisRestants === 0) {
+                    message = `Dommage... 😢 Tu as épuisé tes 10 essais. Le nombre était ${randomNumber}. Un nouveau nombre a été généré.`;
+                    essaisRestants = 10;  // Réinitialiser les essais
+                    randomNumber = Math.floor(Math.random() * 70) + 1;  // Générer un nouveau nombre
+                }
+            }
+
+            // Afficher le message dans la div "resultat"
+            resultatDiv.innerHTML = `<p>${message}</p>`;
+
+            // Mettre à jour le compteur dans la div "compteurEssais"
+            compteurEssaisDiv.innerHTML = `Essais restants : ${essaisRestants}`;
+
+            // Appeler la fonction animateResult() pour animer le message
+            animateResult();
+
+            // Appeler l'animation pour le compteur d'essais
+            gsap.fromTo(compteurEssaisDiv, { scale: 1 }, { scale: 1.2, duration: 0.5, yoyo: true, repeat: 1 });
+
+            // Réinitialiser le champ de l'input et redonner le focus
+            chiffreInput.value = "";    // Vide l'input
+            chiffreInput.focus();       // Garde le curseur actif pour la prochaine saisie
+        }
+
+        // Détecter la touche "Entrée" pour valider la saisie
+        document.getElementById("chiffre").addEventListener("keydown", function(event) {
+            if (event.key === "Enter") { // Vérifie si la touche "Entrée" est appuyée
+                event.preventDefault();  // Empêche le comportement par défaut de soumission du formulaire
+                verifierNombre();        // Appelle la fonction de validation
+            }
+        });
+    </script>
+</body>
+
+</html>

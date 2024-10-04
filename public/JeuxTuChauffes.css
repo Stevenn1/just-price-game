@@ -1,0 +1,135 @@
+html, body {
+    margin: 0;
+}
+
+label {
+    font-size: 20px;
+    color:white;
+    margin-right: 5px;
+}
+
+.layout {
+    padding: 20px;
+    border-radius: 25px;
+    background-color: rgba(7, 153, 238, 0.808);
+}
+
+#container{
+    margin: 0;
+    background-image: url('img/PriceImg.png');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    height: 100vh!important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-number {
+    border-radius: 25px;
+    padding: 10px 20px;
+    box-shadow: 2px 2px 3px rgba(0,0,0,0.2);
+    font-size: 18px;
+    border: none;
+    outline: none;
+    margin-right: 10px;
+}
+
+.btn {
+    background: linear-gradient(to bottom, #4fc476, #325d8f);
+    margin-left: 10px;
+    border-radius: 25px;
+    color: white;
+    padding: 10px 20px;
+    box-shadow: 2px 2px 3px rgba(0,0,0,0.2);
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease; 
+}
+
+.btn:hover {
+    background: linear-gradient(to bottom, #325d8f, #4f84c4);
+    transform: scale(1.05); 
+}
+
+
+p {
+    font-family: "Indie Flower", cursive;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+h1 {
+    margin-top: 0;
+    text-align: center;
+    color: white;
+    font-size: 50px;
+    font-family: "Honk", system-ui;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+    "MORF" 15,
+    "SHLN" 50;
+    font-weight: 400;
+    font-style: normal;    
+}
+
+.card {
+    background-color: #026C7C rgba(0, 0, 0, 0.7);
+    box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    border-radius: 25px;
+    border-color: white;
+    padding: 10px;
+}
+
+#resultat {
+    background-color: white;
+    margin-top: 20px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 25px;
+    position: relative;
+}
+
+.noUnderline {
+    margin-bottom: 0;
+    font-size: 80px;
+    display: flex;
+    justify-content: center;
+}
+
+.sofadi-one-regular {
+    font-family: "Sofadi One", system-ui;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+label {
+    font-family: "Indie Flower", cursive;
+    font-weight: bold;
+}
+
+#compteurEssais {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #49d878;
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+    position: absolute;
+    top: 20px; 
+    right: 20px; 
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+}
